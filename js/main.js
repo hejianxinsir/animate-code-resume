@@ -5,24 +5,28 @@ var css1 = `
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	transition: all 1s;
+}
+ul, ol, li{
+	list-style: none;
 }
 
 /* 来个左侧展示卡片 */
 
 body > #leftCode{
-	position: fixed;
-	left: 0;
-	top: 0;
-	overflow: hidden;
-
-	border: 1px solid rgba(0,0,0,0.1);
-	background: rgba(0,0,0,0);
 	color: black;
 	width: 49%;
-	height: 99vh;
+	height: 97vh;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 7px 7px; 
+	padding-left: 21px;
+	border: 1px solid rgb(0,0,0,0.3); 
+	overflow: hidden;
+	background: white;
 	border-radius: 3px;
-	padding: 7px 28px;
-	margin: 5px 5px;
 }
 
 /* 然后使用 prism 库高亮代码 */
@@ -44,69 +48,115 @@ body > #leftCode{
 
 /* 然后生成右边的卡片 */
 body > #resumePaper{
+	color: white;
+	bakcground: rgb(0,0,0,0.7);
+	width: 49%;
+	height: 97vh;
+
 	position: fixed;
 	right: 0;
 	top: 0;
-	overflow: hidden;
-	color: white;
-	background: black;
-	border: 1px solid rgba(0,0,0,0.7);
-	width: 49%;
-	height: 99vh;
+	margin: 7px 14px;
+	padding-top: 14px;
+	padding-left: 35px;
+
+	overflow: auto;
+	background: #2e2e2e;
 	border-radius: 3px;
-	padding: 7px 28px;
-	margin: 5px 5px;
 }
+
+#resumePaper > .content{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+#resumePaper h1{
+	font-size: 24px;
+	padding: 12px 0;
+}
+#resumePaper ul li{
+	padding: 5px 27px;
+}
+
+/* 最后用一个牛逼的库: marked.js 把 markdown 转为 HTML */
+
+
+
+`
+
+var markdownBody = `
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
+# 大家好，我叫 Janson，来自喜马拉雅山山顶。
+- 这是我的电话
+- 这是我的邮箱
+- 这是我的微信
+- 这是我的钱
+- 需要的话都能给你
+
 `
 
 var css2 = `
-# 大家好，我叫 Janson，来自喜马拉雅山山顶。
-- 这是我的电话
-- 这是我的邮箱
-- 这是我的微信
-- 这是我的钱
-- 需要的话都能给你
-
-# 大家好，我叫 Janson，来自喜马拉雅山山顶。
-- 这是我的电话
-- 这是我的邮箱
-- 这是我的微信
-- 这是我的钱
-- 需要的话都能给你
-
-# 大家好，我叫 Janson，来自喜马拉雅山山顶。
-- 这是我的电话
-- 这是我的邮箱
-- 这是我的微信
-- 这是我的钱
-- 需要的话都能给你
-
-# 大家好，我叫 Janson，来自喜马拉雅山山顶。
-- 这是我的电话
-- 这是我的邮箱
-- 这是我的微信
-- 这是我的钱
-- 需要的话都能给你
-
-# 大家好，我叫 Janson，来自喜马拉雅山山顶。
-- 这是我的电话
-- 这是我的邮箱
-- 这是我的微信
-- 这是我的钱
-- 需要的话都能给你
-
-# 大家好，我叫 Janson，来自喜马拉雅山山顶。
-- 这是我的电话
-- 这是我的邮箱
-- 这是我的微信
-- 这是我的钱
-- 需要的话都能给你
+/* 以上，谢谢观看 */
 `
 
 writeCode('', css1, ()=>{
-	console.log(1)
 	createPaper(()=>{
-		console.log(2)
+		writeMarkdown(markdownBody,()=>{
+			convartMarkdownToHMTL(()=>{
+				writeCode(css1, css2, ()=>{
+					console.log('completed')
+				})	
+			})			
+		})
 	})
 })
 
@@ -114,15 +164,15 @@ function writeCode(prefix, css, fn){
 	var n = 0
 	var leftCode = document.querySelector('#leftCode')
 	var styleCode = document.querySelector('#styleCode')
-	var id = setTimeout(function fnTime(){
+	var id = setInterval(function(){
 		n += 1
 		leftCode.innerHTML = Prism.highlight(prefix + css.slice(0,n), Prism.languages.css, 'css');
 		styleCode.innerHTML = prefix + css.slice(0,n)
 		leftCode.scrollTop = leftCode.scrollHeight
-		if( n < css.length){
-			setTimeout(fnTime,10)
-		}else{}
-		fn && fn.call()
+		if(n >= css.length){
+			window.clearInterval(id)
+			fn && fn.call()	
+		}	
 	},10)
 }
 
@@ -136,11 +186,26 @@ function createPaper(fn){
 	fn && fn.call()
 }
 
-// function writeMarkdown(fn){
-// 	var domCode = document.querySelector('.content')
+function writeMarkdown(markdown,fn){
+	var n = 0
+ 	var domCode = document.querySelector('#resumePaper > .content')
+	var id = setInterval(function(){
+		n += 1
+		domCode.innerHTML = markdown.slice(0,n)
+		domCode.scrollTop = domCode.scrollHeight
+		if(n >= markdown.length){
+			window.clearInterval(id)
+			fn && fn.call()	
+		}	
+	},10)
+}
 
-// 	fn && fn.call()
-// }
-
-
+function convartMarkdownToHMTL(fn){
+	var domContent = document.querySelector('#resumePaper > .content')
+	var div = document.querySelector('div')
+	div.claddName = 'html markdownBody'
+	div.innerHTML = marked(markdownBody)	
+	domContent.replaceWith(div)
+	fn && fn.call()
+}
 
